@@ -26,7 +26,7 @@ sudo pip install -U docker-compose
 ### 2.下载 zPhal-dockerfiles
 直接 clone：
 ```
-git clone git@github.com:ZpGuo/zPhal-dockerfiles.git
+git clone https://github.com/lorock/zPhal-dockerfiles.git
 ```
 或者下载 zip 压缩包也可以。
 

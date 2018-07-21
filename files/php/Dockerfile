@@ -1,6 +1,5 @@
 FROM php:7.2-fpm
-LABEL maintainer="gzp@goozp.com"
-
+LABEL maintainer="lorock@qq.com"
 
 # set timezome
 ENV TZ=Asia/Shanghai
@@ -12,13 +11,16 @@ RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
+		libmcrypt-dev \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+	&& docker-php-ext-install -j$(nproc) iconv mcrypt \
 	&& docker-php-ext-install -j$(nproc) gd \
         && docker-php-ext-install zip \
         && docker-php-ext-install pdo_mysql \
         && docker-php-ext-install opcache \
         && docker-php-ext-install mysqli \
         && rm -r /var/lib/apt/lists/*
+		
 
 # Copy extensions had downloaded
 COPY ./pkg/redis.tgz /home/redis.tgz
